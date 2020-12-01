@@ -1,4 +1,5 @@
 // Initializes the `users` service on path `/users`
+const couchbase = require('couchbase');
 const { Users } = require('./users.class');
 const createModel = require('../../models/users.model');
 const hooks = require('./users.hooks');
@@ -6,10 +7,16 @@ const hooks = require('./users.hooks');
 module.exports = function (app) {
   const Model = createModel(app);
   const paginate = app.get('paginate');
+  const cluster = app.get('cluster');
 
   const options = {
     Model,
-    paginate
+    paginate,
+    cluster,
+    name: 'users',
+    couchbase: {
+      scanConsistency: couchbase.QueryScanConsistency.RequestPlus
+    }
   };
 
   // Initialize our service with any options it requires

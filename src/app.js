@@ -9,12 +9,13 @@ const feathers = require('@feathersjs/feathers');
 const configuration = require('@feathersjs/configuration');
 const express = require('@feathersjs/express');
 const socketio = require('@feathersjs/socketio');
-
+const sync = require('feathers-sync');
 
 const middleware = require('./middleware');
 const services = require('./services');
 const appHooks = require('./app.hooks');
 const channels = require('./channels');
+const couchbase = require('./couchbase');
 
 const authentication = require('./authentication');
 
@@ -22,6 +23,10 @@ const app = express(feathers());
 
 // Load app configuration
 app.configure(configuration());
+app.configure(couchbase);
+app.configure(sync({
+  uri: app.get('redis')
+}));
 // Enable security, CORS, compression, favicon and body parsing
 app.use(helmet({
   contentSecurityPolicy: false

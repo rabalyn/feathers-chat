@@ -1,5 +1,5 @@
-const { Service } = require('feathers-nedb');
+const { CouchbaseService } = require('feathers-couchbase');
 
-exports.Messages = class Messages extends Service {
+exports.Messages = class Messages extends CouchbaseService {
   
 };

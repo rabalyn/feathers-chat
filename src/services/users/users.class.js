@@ -1,5 +1,5 @@
 // This is the database adapter service class
-const { Service } = require('feathers-nedb');
+const { CouchbaseService } = require('feathers-couchbase');
 // We need this to create the MD5 hash
 const crypto = require('crypto');
 
@@ -15,7 +15,7 @@ const getGravatar = email => {
   return `${gravatarUrl}/${hash}?${query}`;
 };
 
-exports.Users = class Users extends Service {
+exports.Users = class Users extends CouchbaseService {
   create (data, params) {
     // This is the information we want from the user signup data
     const { email, password, githubId, name } = data;

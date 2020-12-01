@@ -6,6 +6,11 @@
     "default": 10,
     "max": 50
   },
+  "redis": "redis://localhost:6379",
+  "couchbase": {
+    "username": "Administrator",
+    "password": "test123"
+  },
   "authentication": {
     "oauth": {
       "redirect": "/",

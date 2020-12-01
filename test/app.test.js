@@ -3,7 +3,7 @@ const axios = require('axios');
 const url = require('url');
 const app = require('../src/app');
 
-const port = app.get('port') || 8998;
+const port = 3333;
 const getUrl = pathname => url.format({
   hostname: app.get('host') || 'localhost',
   protocol: 'http',
@@ -12,17 +12,6 @@ const getUrl = pathname => url.format({
 });
 
 describe('Feathers application tests', () => {
-  let server;
-
-  before(function(done) {
-    server = app.listen(port);
-    server.once('listening', () => done());
-  });
-
-  after(function(done) {
-    server.close(done);
-  });
-
   it('starts and shows the index page', async () => {
     const { data } = await axios.get(getUrl());
 
