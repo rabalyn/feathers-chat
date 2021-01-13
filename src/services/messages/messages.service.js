@@ -1,16 +1,13 @@
 // Initializes the `messages` service on path `/messages`
 const couchbase = require('couchbase');
 const { Messages } = require('./messages.class');
-const createModel = require('../../models/messages.model');
 const hooks = require('./messages.hooks');
 
 module.exports = function (app) {
-  const Model = createModel(app);
   const paginate = app.get('paginate');
   const cluster = app.get('cluster');
 
   const options = {
-    Model,
     paginate,
     cluster,
     name: 'messages',
