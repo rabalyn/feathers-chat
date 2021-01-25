@@ -14,14 +14,14 @@ module.exports = {
     find: [ authenticate('jwt') ],
     get: [ authenticate('jwt') ],
     create: [
-      hashPassword('password'),
-      validateSchema(userSchema, AJV)
+      validateSchema(userSchema, AJV),
+      hashPassword('password')
     ],
     update: [ hashPassword('password'),  authenticate('jwt') ],
     patch: [
-      hashPassword('password'), 
       authenticate('jwt'),
-      validateSchema(userSchema, AJV)
+      validateSchema(userSchema, AJV),
+      hashPassword('password')
     ],
     remove: [ authenticate('jwt') ]
   },
