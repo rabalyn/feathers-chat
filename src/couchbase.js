@@ -1,7 +1,8 @@
 const couchbase = require('couchbase');
 
 module.exports = app => {
-  const cluster = new couchbase.Cluster('couchbase://localhost', app.get('couchbase'));
+  const { host, options } = app.get('couchbase');
+  const cluster = new couchbase.Cluster(host, options);
 
-  app.set('cluster', cluster);
+  app.set('couchbaseCluster', cluster);
 };

@@ -1,19 +1,10 @@
 // Initializes the `messages` service on path `/messages`
-const couchbase = require('couchbase');
 const { Messages } = require('./messages.class');
 const hooks = require('./messages.hooks');
 
 module.exports = function (app) {
-  const paginate = app.get('paginate');
-  const cluster = app.get('cluster');
-
   const options = {
-    paginate,
-    cluster,
-    name: 'messages',
-    couchbase: {
-      scanConsistency: couchbase.QueryScanConsistency.RequestPlus
-    }
+    paginate: app.get('paginate')
   };
 
   // Initialize our service with any options it requires
