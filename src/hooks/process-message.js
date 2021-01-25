@@ -19,7 +19,7 @@ module.exports = function (options = {}) { // eslint-disable-line no-unused-vars
       // Set the user id
       userId: user.id,
       // Add the current date
-      createdAt: new Date().getTime()
+      createdAt: new Date().toString()
     };
 
     return context;

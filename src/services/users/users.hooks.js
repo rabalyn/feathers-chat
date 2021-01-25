@@ -1,5 +1,9 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
 
+const AJV = require('ajv');
+const { validateSchema } = require('feathers-hooks-common');
+const userSchema = require('../../schemas/user');
+
 const {
   hashPassword, protect
 } = require('@feathersjs/authentication-local').hooks;
@@ -9,9 +13,16 @@ module.exports = {
     all: [],
     find: [ authenticate('jwt') ],
     get: [ authenticate('jwt') ],
-    create: [ hashPassword('password') ],
+    create: [
+      hashPassword('password'),
+      validateSchema(userSchema, AJV)
+    ],
     update: [ hashPassword('password'),  authenticate('jwt') ],
-    patch: [ hashPassword('password'),  authenticate('jwt') ],
+    patch: [
+      hashPassword('password'), 
+      authenticate('jwt'),
+      validateSchema(userSchema, AJV)
+    ],
     remove: [ authenticate('jwt') ]
   },
 
