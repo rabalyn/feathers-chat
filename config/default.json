@@ -19,7 +19,8 @@
     "secret": "Ej0XhakSOO92QbeyLKDUqsZPQks=",
     "authStrategies": [
       "jwt",
-      "local"
+      "local",
+      "nextjs"
     ],
     "jwtOptions": {
       "header": {
