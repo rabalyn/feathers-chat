@@ -38,7 +38,7 @@ Or in development mode with
 npm run dev
 ```
 
-Now go to [http://localhost:30303](http://localhost:30303) to start chatting 🕊️
+Now go to [http://localhost:3030](http://localhost:3030) to start chatting 🕊️
 
 ## Frontend
 
